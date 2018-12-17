@@ -1,0 +1,6 @@
+1. ota haku urli
+2. hae urli
+3. ota tuloksista jokaisen detailsUri
+4. hae yritykset detailsUrilla
+5. ota detailsUrilla halutut yrityksen tiedot
+6. printtaa tiedot viewiin

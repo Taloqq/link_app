@@ -1,0 +1,1 @@
+<?php header('Location: https://link-app-antte.c9users.io/ci/'); ?>
