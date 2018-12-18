@@ -7,8 +7,11 @@
     endforeach;
 ?>
 
-<a href="<?php echo base_url();?>">New search</a>
-
+<a href="<?php echo base_url();?>">New search  </a>
+<a href="<?php echo base_url("companies/page/".$next_page);?>">Next page  </a>
+<?php if ($previous_page) { ?>
+<a href="<?php echo base_url("companies/page/".$previous_page);?>">Previous page</a>
+<?php }?>
 
 
 

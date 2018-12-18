@@ -11,10 +11,18 @@ class Companies extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper(array('form', 'url', 'url_helper'));
-        $this->load->library(array('form_validation', 'session'));
+        $this->load->library('form_validation', 'session');
         //$this->load->helper('path');
     
     }
+    
+    /**
+     * TODO: Haku funktioon ehdotuksia käyttäjän kirjoituksen perusteella
+     * = käyttäjä kirjoittaa 'o' -> käyttäjälle esitetään dropdown lista o:lla alkavista paikkakunnista
+     * KATSO: ci/json/paikkakunnat.json
+     * miten lista toimialoista?
+     */
+     
     
     public function index() {
         $path = FCPATH.'/json/paikkakunnat.json';
@@ -30,7 +38,7 @@ class Companies extends CI_Controller {
     /**
      * Hakutulosten selaamisen nopeuttamiseksi voi hakea seuraavien sivujen datan jo valmiiksi?
      */
-    public function search() {
+    public function page($id = NULL) {
 
         $path = FCPATH.'/json/paikkakunnat.json';
         $data['cities'] = json_decode(file_get_contents($path), true);
@@ -44,36 +52,28 @@ class Companies extends CI_Controller {
         }
         
         else {
-            $this->session->set_userdata('filters', array(
+            $info = array(
                 'city' => '&registeredOffice='.$this->input->post('city'),
                 'industry' => '&businessLine='.$this->input->post('industry')
-            ));
+            );
             
-        header('Location: '. site_url("companies/page/1"));
-        
-        }     
-        
-    }
-    
-    public function page($id = NULL) {
-        
-        $results_from = $id * 10 - 10;
-        $json_url = 'https://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=10&resultsFrom='.$results_from. $_SESSION['filters']['city'] . $_SESSION['filters']['industry'];
-        
-        //Checks if any results are found, return if not.
-        if (!$data['json'] = $this->get_file_contents($json_url)) {
-        
+        $json_url = 'https://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=10'. $info['city'] . $info['industry'];
+
+        //Tarkistaa onko hakutuloksia -> return jos ei
+        if (!$data['json'] = json_decode(@file_get_contents($json_url), true)) {
+            
             $data['title'] = 'No results found';
             $this->load->view("templates/header");
             $this->load->view("haku", $data);
             $this->load->view("templates/footer");  
             return;
+            
         }
-        
+        $data['nextPage'] = $data['json']['nextResultsUri'];
         $data['results'] = $data['json']['results'];
         $data['companies'] = array();
-        $data['next_page'] = $id + 1;
-        $data['previous_page'] = $id - 1;
+        
+        
         
         foreach ($data['results'] as $item):
             $data['companies'][] = json_decode(file_get_contents($item['detailsUri']), true);
@@ -81,18 +81,9 @@ class Companies extends CI_Controller {
         
         $this->load->view("templates/header");
         $this->load->view("list", $data);
-        $this->load->view("templates/footer");        
+        $this->load->view("templates/footer");   
         
+        }        
     }
-    
-    //Decodes json content from given url
-    private function get_file_contents($url) {
-        
-        if (!$contents = json_decode(@file_get_contents($url), true)) {
-            return false;
-        }
-        return $contents;
-    }
-
     
 }

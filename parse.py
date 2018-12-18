@@ -18,7 +18,6 @@ for item in data:
 listLen = len(itemList)
 
 with io.open("paste.txt", 'w', encoding="utf-8") as file:
-    
     x = 0
     for item in data:
         while x < listLen - 1:
@@ -28,5 +27,4 @@ with io.open("paste.txt", 'w', encoding="utf-8") as file:
             comma = ""
         x += 1
         file.write("'" + item[key] + "'" + comma)
-        
 file.close()
