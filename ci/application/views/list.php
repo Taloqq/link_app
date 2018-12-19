@@ -13,34 +13,3 @@
 <a href="<?php echo base_url("companies/page/".$previous_page);?>">Previous page</a>
 <?php }?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

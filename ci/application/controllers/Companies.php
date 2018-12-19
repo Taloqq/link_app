@@ -10,17 +10,28 @@ class Companies extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        if (!isset($_SESSION['lang'])) {
+            $this->set_lang('english');
+        }
+        $this->config->load('userlanguage');
         $this->load->helper(array('form', 'url', 'url_helper'));
         $this->load->library(array('form_validation', 'session'));
         //$this->load->helper('path');
+        
+        $svenska = ["search" => "Söka"];
+        $suomi = ["search" => "Hae"];
+        $english = ["search" => "Search"];
     
     }
     
     public function index() {
+        
+        $lang_config = $this->config->item('userlanguage');
+        $search = $lang_config[$_SESSION['lang']]['search'];
+
         $path = FCPATH.'/json/paikkakunnat.json';
         $data['cities'] = json_decode(file_get_contents($path), true);
-        $data['title'] = 'Search companies';
-        
+        $data['title'] = $search;
         $this->load->view("templates/header");
         $this->load->view("haku", $data);
         $this->load->view("templates/footer");
@@ -31,7 +42,7 @@ class Companies extends CI_Controller {
      * Hakutulosten selaamisen nopeuttamiseksi voi hakea seuraavien sivujen datan jo valmiiksi?
      */
     public function search() {
-
+        
         $path = FCPATH.'/json/paikkakunnat.json';
         $data['cities'] = json_decode(file_get_contents($path), true);
         $this->form_validation->set_rules('city', 'City', 'required');
@@ -56,7 +67,7 @@ class Companies extends CI_Controller {
     }
     
     public function page($id = NULL) {
-        
+
         $results_from = $id * 10 - 10;
         $json_url = 'https://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=10&resultsFrom='.$results_from. $_SESSION['filters']['city'] . $_SESSION['filters']['industry'];
         
@@ -93,6 +104,14 @@ class Companies extends CI_Controller {
         }
         return $contents;
     }
-
+    
+    public function set_lang($lang = 'english') {
+        
+        unset($_SESSION['lang']);
+        $_SESSION['lang'] = $lang;
+        redirect($_SERVER['HTTP_REFERER']);
+        //header('Location: '. base_url());
+       
+    }
     
 }
