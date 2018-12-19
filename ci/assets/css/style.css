@@ -17,7 +17,17 @@ body {
   color: rgb(0, 55, 255);
 }
 
+html { overflow-y: scroll; }
 
+.flag {
+  box-shadow:0 1px 6px 0;
+  height: 25px;
+  width: 40px;
+}
+.flaglink {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
 * { box-sizing: border-box; }
 body {
   font: 16px Arial;

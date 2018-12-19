@@ -18,10 +18,6 @@ class Companies extends CI_Controller {
         $this->load->library(array('form_validation', 'session'));
         //$this->load->helper('path');
         
-        $svenska = ["search" => "Söka"];
-        $suomi = ["search" => "Hae"];
-        $english = ["search" => "Search"];
-    
     }
     
     public function index() {
