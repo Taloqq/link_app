@@ -1,6 +1,22 @@
 .card-body {
     margin-left:5%;
 }
+body { 
+    padding-top: 65px; 
+}
+
+.navbar-default {
+  box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
+}
+.navbar-default .navbar-brand {
+  font-family: 'Fredoka One', cursive;
+  color: rgb(0, 24, 125);
+  font-size: 25px;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: rgb(0, 55, 255);
+}
+
 
 * { box-sizing: border-box; }
 body {

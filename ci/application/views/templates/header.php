@@ -4,32 +4,31 @@
         <title>Company Search</title>
         <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>"/>
         <link rel="stylesheet" href="<?php echo base_url("assets/css/style.css"); ?>"/>
+        <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet"> 
     </head>
     <body>
+        <div class="container">
 
-  
-       <div class="container">
-            
-            <div class="card text-center">
-              <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                  <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url(); ?>">Search</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url("companies/set_lang/suomi");?>">FI</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url("companies/set_lang/svenska");?>">SE</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url("companies/set_lang/english");?>">EN</a>
-                  </li>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                
+                <div class="col-sm-2">
+                </div>
+                
+                <div class="navbar-header">
+                    <a href="<?php echo base_url();?>" class="navbar-left"><img src="<?php echo base_url("assets/images/linksmall.png");?>" style="padding-top:8.5px" alt=""></a>
+                    <a class="navbar-brand" href="<?php echo base_url();?>" style="padding-left:3px">linkapp</a>
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
                 </ul>
-              </div>
-             </div>
-              
-            <div class="card-body">
+            
+            </nav>
+
+        </div>
+        <div class="container">
+  
+            
