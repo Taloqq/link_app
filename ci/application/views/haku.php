@@ -1,3 +1,6 @@
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+
 <?php echo validation_errors(); ?>
 <?php echo form_open_multipart('companies/search', 'autocomplete="off"'); ?>
 
@@ -19,7 +22,6 @@
 	</div> 
 	
     <div class="row">
-        <p>Tähän kysymysmerkki</p>
 		<label for="city" class="col-sm-2 control-label">Industry</label> <!-- Toimiala tai sen alkuosa millä tahansa kielellä, vois lisätä jonku infon toho. -->
 		<div class="col-sm-2">
 			<input type="text" class="form-control" id="industry" name="industry" value="">
@@ -29,7 +31,7 @@
 
 <div class="form-group">
 <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-1">
 
         <button type="submit" class="btn btn-primary">Hae</button>
 
@@ -39,6 +41,8 @@
 </div>
 
 </form>
+</div>
+<div class="col-sm-3"></div>
 <?php
 // Close form
 echo form_close();
