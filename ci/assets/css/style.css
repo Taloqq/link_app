@@ -1,6 +1,4 @@
-.card-body {
-    margin-left:5%;
-}
+
 body { 
   padding-top: 100px; 
   /*background-image: url("../images/city2.jpeg");*/
@@ -8,19 +6,70 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  font-size:17px;
+
+
+    font-family: 'Quicksand', sans-serif;
+
+
+}
+a {
+  font-weight:700;
 }
 
 .container {
   background-color:white;
-  border-radius: 10px;
+  border-radius: 0px;
   box-shadow:0 0px 5px 2px rgba(0,0,0,0.28);
+  padding: 0px;
 }
 @media (min-width: 992px) {
   .container {
     width: 970px;
   }
 }
+.panel-body.gray-panel {
+  background-color: rgb(234, 234, 234);
+}
+.panel-body.white-panel {
+  background-color: rgb(255, 255, 255);
+}
+.panel-heading.gray-panel {
+  background-color: rgb(234, 234, 234);
+  padding:15px;
+}
+.panel-heading.white-panel {
+  background-color: rgb(255, 255, 255);
+  padding:15px;
+}
 
+.panel-group .panel + .panel {
+  margin-top:0px;
+}
+.panel {
+  border:0px;
+}
+.panel-heading {
+  border-radius:0px;
+}
+.panel-group .panel-heading + .panel-collapse > .panel-body, .panel-group .panel-heading + .panel-collapse > .list-group {
+  border: 0;
+}
+.panel-title {
+  font-size:20px;
+}
+
+.form-group {
+  padding-top:20px;
+}
+.form-control {
+  box-shadow: 0 0 0 0;
+  border-radius: 0px;
+  padding: 0px;
+  font-size: 16px;
+  color: rgb(51, 51, 51);
+  padding-left:10px;
+}
 .navbar-default {
   box-shadow:0 1px 6px 0 rgba(32,33,36,0.28);
 }
@@ -44,10 +93,18 @@ html { overflow-y: scroll; }
   padding-top: 12px;
   padding-bottom: 12px;
 }
-* { box-sizing: border-box; }
-body {
-  font: 16px Arial;
+.search-title {
+  font-weight: bold;
 }
+.row {
+  padding:5px;
+}
+.search-bar {
+  border: 1px solid transparent;
+}
+
+* { box-sizing: border-box; }
+
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;
@@ -56,7 +113,7 @@ body {
 input {
   border: 1px solid transparent;
   background-color: #f1f1f1;
-  padding: 10px;
+  padding: 5px;
   font-size: 16px;
 }
 input[type=text] {
@@ -79,7 +136,10 @@ input[type=submit] {
   right: 0;
 }
 .autocomplete-items div {
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
   cursor: pointer;
   background-color: #fff;
   border-bottom: 1px solid #d4d4d4;
