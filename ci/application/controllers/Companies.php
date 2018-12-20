@@ -39,6 +39,7 @@ class Companies extends CI_Controller {
      */
     public function search() {
         
+        $lang_config = $this->config->item('userlanguage');
         $path = FCPATH.'/json/paikkakunnat.json';
         $data['cities'] = json_decode(file_get_contents($path), true);
         $this->form_validation->set_rules('city', 'City', 'required');
@@ -63,7 +64,8 @@ class Companies extends CI_Controller {
     }
     
     public function page($id = NULL) {
-
+        
+        $lang_config = $this->config->item('userlanguage');
         $results_from = $id * 10 - 10;
         $json_url = 'https://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=10&resultsFrom='.$results_from. $_SESSION['filters']['city'] . $_SESSION['filters']['industry'];
         
@@ -81,6 +83,7 @@ class Companies extends CI_Controller {
         $data['companies'] = array();
         $data['next_page'] = $id + 1;
         $data['previous_page'] = $id - 1;
+        $data['labels'] = $lang_config[$_SESSION['lang']];
         
         foreach ($data['results'] as $item):
             $data['companies'][] = json_decode(file_get_contents($item['detailsUri']), true);
@@ -103,8 +106,18 @@ class Companies extends CI_Controller {
     
     public function set_lang($lang = 'english') {
         
+        unset($_SESSION['langcode']);
         unset($_SESSION['lang']);
         $_SESSION['lang'] = $lang;
+        if ($lang = 'english') {
+            $_SESSION['langcode'] = 'EN';
+        }
+        if ($lang = 'suomi') {
+            $_SESSION['langcode'] = 'FI';
+        }
+        if ($lang = 'svenska') {
+            $_SESSION['langcode'] = 'SE';
+        }
         redirect($_SERVER['HTTP_REFERER']);
         //header('Location: '. base_url());
        

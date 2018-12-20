@@ -1,5 +1,13 @@
  <div class="panel-group" id="accordion">
 <?php
+function ifExists($data) {
+    if ($data) {
+        return $data;
+    }
+    else {
+        return "";
+    }
+}
 $gray = 0;
 $id = 1;
     foreach ($companies as $company):
@@ -11,7 +19,16 @@ $id = 1;
             else {
                 $panel_color = 'gray-panel';
                 $gray = 0;
-            }?>
+            }
+            foreach ($item['addresses'] as $address) {
+                $place = $address['city'];
+                $street = $address['street'];
+                $postcode = $address['postCode'];
+            }
+            foreach ($item['contactDetails'] as $contactdetails) {
+                $contact = $contactdetails['value'];
+            }
+            ?>
             <div class="panel panel-default">
                 <div class="panel-heading <?php echo $panel_color;?>">
                   <h4 class="panel-title">
@@ -19,13 +36,22 @@ $id = 1;
                     <?php echo $item['name'];?></a>
                   </h4>
                 </div>
+                
                 <div id="collapse<?php echo $id;?>" class="panel-collapse collapse">
-                  <div class="panel-body <?php echo $panel_color;?>">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo consequat.</div>
+                    <div class="panel-body <?php echo $panel_color;?>">
+                        <div class="col-sm-5 col-sm-offset-1">
+                            <p><?php echo $labels['place'].": ".ifExists($place);?></p></br>
+                            <p><?php echo $labels['street'].": ".ifExists($street);?></p></br>
+                            <p><?php echo $labels['postcode'].": ".ifExists($postcode);?></p></br>
+                        </div>
+                        <div class="col-sm-6">
+                             <p><?php echo $labels['registered'].": ".ifExists($item['registrationDate']);?></p></br>
+                             <p><?php echo $labels['contact'].": ".ifExists($contact);?></p></br>
+                             <a href="https://www.google.com/?q=<?php echo $item['name'];?>" target="_blank">Google <?php echo $labels['googlesearch'].": "; echo $item['name'];?></a>
+                        </div>
+                    </div>
                 </div>
-             </div>
+            </div>
              <?php
              $id += 1;
                  endforeach;
