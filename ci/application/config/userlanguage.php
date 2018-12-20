@@ -10,7 +10,13 @@ $userlanguage = array(
         'place' => 'Paikkakunta',
         'postcode' => 'Postinumero',
         'contact' => 'Ota yhteyttä',
-        'googlesearch' => 'haku'
+        'googlesearch' => 'haku',
+        'nextpage' => 'Seuraava sivu',
+        'previouspage' => 'Edellinen sivu',
+        'newsearch' => 'Uusi haku',
+        'searchbutton' => 'Hae',
+        'industry' => 'Toimiala'
+        
         ),
         
     'english' => array(
@@ -20,7 +26,12 @@ $userlanguage = array(
         'place' => 'Place',
         'postcode' => 'Postal code',
         'contact' => 'Contact',
-        'googlesearch' => 'search'
+        'googlesearch' => 'search',
+        'nextpage' => 'Next page',
+        'previouspage' => 'Previous page',
+        'newsearch' => 'New search',
+        'searchbutton' => 'Search',
+        'industry' => 'Industry'
     
         ),
         
@@ -31,7 +42,13 @@ $userlanguage = array(
         'place' => 'Plats',
         'postcode' => 'Postnummer',
         'contact' => 'Kontakta',
-        'googlesearch' => 'sök'
+        'googlesearch' => 'sök',
+        'nextpage' => 'Nästa sida',
+        'previouspage' => 'Föregående sida',
+        'newsearch' => 'Ny sökning',
+        'searchbutton' => 'Söka',
+        'industry' => 'Industri'
+        
         )        
 );
 

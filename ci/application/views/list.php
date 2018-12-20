@@ -37,7 +37,7 @@ $id = 1;
             ?>
             <div class="panel panel-default">
                 <div class="panel-heading <?php echo $panel_color;?>">
-                  <h4 class="panel-title">
+                  <h4 class="panel-title text-center">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $id;?>">
                     <?php echo $item['name'];?></a>
                   </h4>
@@ -45,15 +45,25 @@ $id = 1;
                 
                 <div id="collapse<?php echo $id;?>" class="panel-collapse collapse">
                     <div class="panel-body <?php echo $panel_color;?>">
-                        <div class="col-sm-6">
-                            <p><?php echo $labels['place'].": ".ifExists($place);?></p></br>
-                            <p><?php echo $labels['street'].": ".ifExists($street);?></p></br>
-                            <p><?php echo $labels['postcode'].": ".ifExists($postcode);?></p></br>
+                        <div class="col-sm-2">
+                            <p><?php echo $labels['place'].": ";?></p></br>
+                            <p><?php echo $labels['street'].": ";?></p></br>
+                            <p><?php echo $labels['postcode'].": ";?></p></br>
                         </div>
-                        <div class="col-sm-6">
-                             <p><?php echo $labels['registered'].": ".ifExists($item['registrationDate']);?></p></br>
-                             <p><?php echo $labels['contact'].": ".$contact;?></p></br>
-                             <a href="https://www.google.com/?q=<?php echo $item['name'];?>" target="_blank">Google <?php echo $labels['googlesearch'].": "; echo $item['name'];?></a>
+                        <div class="col-sm-4">
+                            <p class="text-right"><?php echo $place;?></p></br>
+                            <p class="text-right"><?php echo $street;?></p></br>
+                            <p class="text-right"><?php echo $postcode;?></p></br>
+                        </div>
+                        <div class="col-sm-2" style="border-left-style:solid;border-left-width:2px">
+                             <p><?php echo $labels['registered'].": ";?></p></br>
+                             <p><?php echo $labels['contact'].": ";?></p></br>
+                             <a href="https://www.google.com/?q=<?php echo $item['name'];?>" target="_blank">Google <?php echo $labels['googlesearch'];?></a>
+                        </div>
+                        <div class="col-sm-4">
+                            <p class="text-right"><?php echo $item['registrationDate'];?></p></br>
+                            <p class="text-right"><?php echo $contact;?> </p></br>
+
                         </div>
                     </div>
                 </div>
@@ -65,10 +75,15 @@ $id = 1;
 ?>
 
 </div> 
+<div class="row">
 
-<a href="<?php echo base_url();?>">New search  </a>
-<a href="<?php echo base_url("companies/page/".$next_page);?>">Next page  </a>
-<?php if ($previous_page) { ?>
-<a href="<?php echo base_url("companies/page/".$previous_page);?>">Previous page</a>
-<?php }?>
+    <div class="col-sm-12" style="left:10px">
+    <a href="<?php echo base_url();?>" class="btn btn-primary" role="button"><?php echo $labels['newsearch'];?></a>
+    <?php if ($previous_page) { ?>
+    <a href="<?php echo base_url("companies/page/".$previous_page);?>" class="btn btn-default" role="button"><?php echo $labels['previouspage'];?></a>
+    <?php }?>
+    <a href="<?php echo base_url("companies/page/".$next_page);?>"class="btn btn-default" role="button"><?php echo $labels['nextpage'];?></a>
+    </div>
+</div>
+
 

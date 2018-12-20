@@ -24,7 +24,7 @@ class Companies extends CI_Controller {
         
         $lang_config = $this->config->item('userlanguage');
         $search = $lang_config[$_SESSION['lang']]['search'];
-
+        $data['labels'] = $lang_config[$_SESSION['lang']];
         $path = FCPATH.'/json/paikkakunnat.json';
         $data['cities'] = json_decode(file_get_contents($path), true);
         $data['title'] = $search;
@@ -40,10 +40,12 @@ class Companies extends CI_Controller {
     public function search() {
         
         $lang_config = $this->config->item('userlanguage');
+        $search = $lang_config[$_SESSION['lang']]['search'];
         $path = FCPATH.'/json/paikkakunnat.json';
         $data['cities'] = json_decode(file_get_contents($path), true);
         $this->form_validation->set_rules('city', 'City', 'required');
-        $data['title'] = 'Search companies';
+        $data['title'] = $search;
+        $data['labels'] = $lang_config[$_SESSION['lang']];
         
         if ($this->form_validation->run() === FALSE) {
             $this->load->view("templates/header");
@@ -76,7 +78,7 @@ class Companies extends CI_Controller {
             $this->load->view("templates/header");
             $this->load->view("haku", $data);
             $this->load->view("templates/footer");  
-            return;
+            header('Location: '. base_url());
         }
         
         $data['results'] = $data['json']['results'];
