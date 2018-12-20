@@ -1,11 +1,12 @@
  <div class="panel-group" id="accordion">
 <?php
-function ifExists($data) {
+function ifExists($data = NULL) {
     if ($data) {
         return $data;
     }
     else {
-        return "";
+        $data = " ";
+        return $data;
     }
 }
 $gray = 0;
@@ -25,8 +26,13 @@ $id = 1;
                 $street = $address['street'];
                 $postcode = $address['postCode'];
             }
-            foreach ($item['contactDetails'] as $contactdetails) {
-                $contact = $contactdetails['value'];
+            if ($item['contactDetails']) {
+                foreach ($item['contactDetails'] as $contactdetails) {
+                    $contact = $contactdetails['value'];
+                }
+            }
+            else {
+                $contact = "";
             }
             ?>
             <div class="panel panel-default">
@@ -39,14 +45,14 @@ $id = 1;
                 
                 <div id="collapse<?php echo $id;?>" class="panel-collapse collapse">
                     <div class="panel-body <?php echo $panel_color;?>">
-                        <div class="col-sm-5 col-sm-offset-1">
+                        <div class="col-sm-6">
                             <p><?php echo $labels['place'].": ".ifExists($place);?></p></br>
                             <p><?php echo $labels['street'].": ".ifExists($street);?></p></br>
                             <p><?php echo $labels['postcode'].": ".ifExists($postcode);?></p></br>
                         </div>
                         <div class="col-sm-6">
                              <p><?php echo $labels['registered'].": ".ifExists($item['registrationDate']);?></p></br>
-                             <p><?php echo $labels['contact'].": ".ifExists($contact);?></p></br>
+                             <p><?php echo $labels['contact'].": ".$contact;?></p></br>
                              <a href="https://www.google.com/?q=<?php echo $item['name'];?>" target="_blank">Google <?php echo $labels['googlesearch'].": "; echo $item['name'];?></a>
                         </div>
                     </div>
